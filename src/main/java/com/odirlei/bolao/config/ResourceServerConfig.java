@@ -15,9 +15,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = { "/oauth/token", "/users/**"};
-	private static final String[] USER_OR_ADMIN = {"/boloes/**", "/users/**"};
-	private static final String[] ADMIN = {"/resultado/**", "/emails/**"};
+	//private static final String[] PUBLIC = { "/oauth/token", "/users/**"};
+	//private static final String[] USER_OR_ADMIN = {"/boloes/**", "/users/**"};
+	//private static final String[] ADMIN = {"/resultado/**", "/emails/**"};
 	
 	
 	@Override
