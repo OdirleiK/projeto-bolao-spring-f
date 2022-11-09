@@ -46,9 +46,9 @@ public class S3Service {
 
 	private URL uploadFile(InputStream is, String fileName, String contentType) {
 		ObjectMetadata meta = new ObjectMetadata();
-		LOG.info("vai krl");
+		LOG.info("upload start");
 		s3client.putObject(bucketName, fileName, is, meta);
-		LOG.info("foi krl");
+		LOG.info("upload finish");
 		return s3client.getUrl(bucketName, fileName);
 	}
 	
