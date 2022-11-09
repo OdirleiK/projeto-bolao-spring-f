@@ -15,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.odirlei.bolao.enums.Resultado;
 
@@ -30,29 +28,28 @@ public class Jogo implements Serializable {
 	private Long id;
 	
 	@Column
-	@DateTimeFormat(style= "dd-MM-yyyy HH:mm")
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern= "dd-MM-yyyy HH:mm")
 	private LocalDateTime data;
 	
 	@ManyToOne(targetEntity = Time.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "id_time1")
-	private Long id_time1;
+	@JoinColumn(nullable = false, name = "time1")
+	private Time time1;
 	
 	@ManyToOne(targetEntity = Time.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "id_time2")
-	private Long id_time2;
+	@JoinColumn(nullable = false, name = "time2")
+	private Time time2;
 	
 	@Enumerated(EnumType.STRING)
 	private Resultado resultado;
 
 	public Jogo() {}
 
-	public Jogo(Long id, LocalDateTime data, Long id_time1, Long id_time2, Resultado resultado) {
+	public Jogo(Long id, LocalDateTime data, Time time1, Time time2, Resultado resultado) {
 		super();
 		this.id = id;
 		this.data = data;
-		this.id_time1 = id_time1;
-		this.id_time2 = id_time2;
+		this.time1 = time1;
+		this.time2 = time2;
 		this.resultado = resultado;
 	}
 
@@ -72,20 +69,20 @@ public class Jogo implements Serializable {
 		this.data = data;
 	}
 
-	public Long getId_time1() {
-		return id_time1;
+	public Time getTime1() {
+		return time1;
 	}
 
-	public void setId_time1(Long id_time1) {
-		this.id_time1 = id_time1;
+	public void setTime1(Time time1) {
+		this.time1 = time1;
 	}
 
-	public Long getId_time2() {
-		return id_time2;
+	public Time getTime2() {
+		return time2;
 	}
 
-	public void setId_time2(Long id_time2) {
-		this.id_time2 = id_time2;
+	public void setTime2(Time time2) {
+		this.time2 = time2;
 	}
 
 	public Resultado getResultado() {
@@ -95,6 +92,11 @@ public class Jogo implements Serializable {
 	public void setResultado(Resultado resultado) {
 		this.resultado = resultado;
 	}
+
+	
+	
+
+	
 
 
 }

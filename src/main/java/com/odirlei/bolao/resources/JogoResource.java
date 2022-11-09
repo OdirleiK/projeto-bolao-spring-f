@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.odirlei.bolao.dto.JogoDTO;
+import com.odirlei.bolao.entities.Jogo;
+import com.odirlei.bolao.repositories.JogoRepository;
 import com.odirlei.bolao.services.JogoService;
 
 @RestController
@@ -19,16 +21,19 @@ public class JogoResource {
 	@Autowired
 	JogoService jogoService;
 	
-	@GetMapping
-	public ResponseEntity<List<JogoDTO>> findAll() {
-		List<JogoDTO> list = jogoService.findAll();
-		return ResponseEntity.ok().body(list);
+	@Autowired
+	JogoRepository jogoRepository;
+	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Jogo> findById(@PathVariable("id") Long id){
+		return jogoRepository.findById(id)
+				.map(jogo -> ResponseEntity.ok().body(jogo))
+				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<JogoDTO> findById(@PathVariable Long id) {
-		JogoDTO dto = jogoService.findById(id);
-		return ResponseEntity.ok().body(dto);
+	@GetMapping(path = "")
+	public Iterable<Jogo> findAll(){
+		return jogoRepository.findAll();
 	}
 	
 }
