@@ -3,14 +3,13 @@ package com.odirlei.bolao.dto;
 import java.time.LocalDateTime;
 
 import com.odirlei.bolao.entities.Palpite;
-import com.odirlei.bolao.entities.User;
 import com.odirlei.bolao.enums.Resultado;
 
 public class PalpiteDTO {
 
 	private Long id;
 	private Long jogo_id;
-	private User usuario_id;
+	private Long usuario_id;
 	private LocalDateTime data_inclusao;
 	private Resultado resultado;
 
@@ -18,7 +17,7 @@ public class PalpiteDTO {
 	public PalpiteDTO() {}
 
 
-	public PalpiteDTO(Long id, Long jogo_id, User usuario_id, LocalDateTime data_inclusao, Resultado resultado) {
+	public PalpiteDTO(Long id, Long jogo_id, Long usuario_id, LocalDateTime data_inclusao, Resultado resultado) {
 		super();
 		this.id = id;
 		this.jogo_id = jogo_id;
@@ -29,8 +28,6 @@ public class PalpiteDTO {
 	
 	public PalpiteDTO(Palpite entity) {
 		this.id = entity.getId();
-		this.jogo_id = entity.getJogo_id();
-		this.usuario_id = entity.getUsuario_id();
 		this.data_inclusao = entity.getData_inclusao();
 		this.resultado = entity.getResultado();
 	}
@@ -51,11 +48,11 @@ public class PalpiteDTO {
 		this.jogo_id = jogo_id;
 	}
 
-	public User getUsuario_id() {
+	public Long getUsuario_id() {
 		return usuario_id;
 	}
 
-	public void setUsuario_id(User usuario_id) {
+	public void setUsuario_id(Long usuario_id) {
 		this.usuario_id = usuario_id;
 	}
 

@@ -1,3 +1,4 @@
+
 package com.odirlei.bolao.dto;
 
 import com.odirlei.bolao.services.validation.UserInsertValid;
@@ -25,4 +26,3 @@ public class UserInsertDTO extends UserDTO{
 	
 
 }
-

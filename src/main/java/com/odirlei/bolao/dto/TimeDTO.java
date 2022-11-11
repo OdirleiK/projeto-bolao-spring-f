@@ -9,17 +9,21 @@ public class TimeDTO implements Serializable {
 	
 	private Integer id;
 	private String time;
+	private String grupo;
 	
 	public TimeDTO() {}
 
-	public TimeDTO(Integer id, String time) {
+	public TimeDTO(Integer id, String time, String grupo) {
+		super();
 		this.id = id;
 		this.time = time;
+		this.grupo = grupo;
 	}
 	
 	public TimeDTO(Time entity) {
 		this.id = entity.getId();
 		this.time = entity.getTime();
+		this.grupo = entity.getGrupo();
 	}
 
 	public Integer getId() {
@@ -37,6 +41,15 @@ public class TimeDTO implements Serializable {
 	public void setTime(String time) {
 		this.time = time;
 	}
+
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
+
 	
 	
 	

@@ -69,7 +69,6 @@ public class UserService implements UserDetailsService {
 		return new UserDTO(entity);
 	}
 
-	@Transactional
 	public UserDTO insert(UserInsertDTO dto) {
 		Email email = new Email();
 		User entity = new User();
@@ -87,7 +86,7 @@ public class UserService implements UserDetailsService {
 		message.setTo(entity.getEmail());
 		message.setSubject("Bolao Copa do mundo | nao responda");
 		message.setText("Ola " + entity.getNome() + " Seja muito bem vindo ao nosso bolão, chame seus amigos e se divirta");
-		emailSender.send(message);
+		//emailSender.send(message);
 		email.setStatusEmail(StatusEmail.SENT);
 		
 	
@@ -95,6 +94,9 @@ public class UserService implements UserDetailsService {
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
+	
+
+	
 	
 	@SuppressWarnings("deprecation")
 	@Transactional
@@ -135,7 +137,7 @@ public class UserService implements UserDetailsService {
 	
 	@Transactional
 	public SimpleMailMessage constructResetTokenEmail(String token, User user) {
-		String url = "/users/changePasswor?token=" + token;
+		String url = token; //"/users/changePasswor?token="
 		Email email = new Email();
 		SimpleMailMessage message = new SimpleMailMessage();
 		
@@ -143,7 +145,7 @@ public class UserService implements UserDetailsService {
 		message.setFrom("odirlei47777@gmail.com");
 		message.setTo(user.getEmail());
 		message.setSubject("Bolao Copa do mundo | Redefinir Senha");
-		message.setText("Ola " + user.getNome() + " Seu link para redefinir a sua senha: " + url);
+		message.setText("Ola " + user.getUsername() + " Seu link para redefinir a sua senha: " + url);
 		emailSender.send(message);
 		email.setStatusEmail(StatusEmail.SENT);
 		
@@ -161,7 +163,6 @@ public class UserService implements UserDetailsService {
 		entity.setNome(dto.getNome());
 		entity.setSobrenome(dto.getSobrenome());
 		entity.setEmail(dto.getEmail());
-		
 		entity.getRoles().clear();
 		for(RoleDTO roleDto : dto.getRoles()) {
 			Role role = roleRepository.getOne(roleDto.getId());

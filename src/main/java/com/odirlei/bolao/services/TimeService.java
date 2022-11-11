@@ -21,5 +21,11 @@ public class TimeService {
 	public List<TimeDTO> findAll() {
 		List<Time> list = repository.findAll();
 		return list.stream().map(x -> new TimeDTO(x)).collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = true)
+	public List<TimeDTO> findGroup(String grupo) {
+		List<Time> list = repository.findGrupo(grupo);
+		return list.stream().map(x -> new TimeDTO(x)).collect(Collectors.toList());
 	} 
 }
