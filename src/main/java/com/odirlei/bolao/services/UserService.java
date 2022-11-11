@@ -85,8 +85,8 @@ public class UserService implements UserDetailsService {
 		message.setFrom("odirlei47777@gmail.com");
 		message.setTo(entity.getEmail());
 		message.setSubject("Bolao Copa do mundo | nao responda");
-		message.setText("Ola " + entity.getNome() + " Seja muito bem vindo ao nosso bolão, chame seus amigos e se divirta");
-		//emailSender.send(message);
+		message.setText("Ola " + entity.getNome()+"." + " Seja muito bem vindo ao nosso bolão, chame seus amigos e divirta-se");
+		emailSender.send(message);
 		email.setStatusEmail(StatusEmail.SENT);
 		
 	
@@ -145,7 +145,7 @@ public class UserService implements UserDetailsService {
 		message.setFrom("odirlei47777@gmail.com");
 		message.setTo(user.getEmail());
 		message.setSubject("Bolao Copa do mundo | Redefinir Senha");
-		message.setText("Ola " + user.getUsername() + " Seu link para redefinir a sua senha: " + url);
+		message.setText("Ola " + user.getUsername() + " Seu token para redefinir a sua senha: " + url);
 		emailSender.send(message);
 		email.setStatusEmail(StatusEmail.SENT);
 		
